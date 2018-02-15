@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ public class UsersAction {
     private TbUserService userService;
 
     @RequestMapping("/doLogin")
+    @ResponseBody
     public String doLogin(@Param("job_num") String job_num, @Param("job_pwd") String job_pwd, HttpServletRequest request, Model model){
         HttpSession session=request.getSession();
         session.setAttribute("job_num",job_num);
