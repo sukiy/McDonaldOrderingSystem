@@ -25,17 +25,10 @@ public class UsersAction {
 
     @RequestMapping("/doLogin")
     @ResponseBody
-    public String doLogin(@Param("job_num") String job_num, @Param("job_pwd") String job_pwd, HttpServletRequest request, Model model){
+    public int doLogin(@Param("job_num") String job_num, @Param("job_pwd") String job_pwd, HttpServletRequest request){
         HttpSession session=request.getSession();
         session.setAttribute("job_num",job_num);
         session.setAttribute("job_pwd",job_pwd);
-        if (job_num==null||job_num.equals("")){
-            model.addAttribute("0","用户名不能为空");
-            return "index";
-        }else if (job_pwd==null||job_pwd.equals("")){
-            model.addAttribute("1","密码不能为空");
-            return "index";
-        }
 
         HashMap<String,Object> users=new HashMap<String,Object>();
         users.put("job_num",job_num.trim());
@@ -43,17 +36,17 @@ public class UsersAction {
         TbUsers user=userService.doLogin(users);
         session.setAttribute("user",user);
 
-        if (user==null){
-            model.addAttribute("error","用户名或密码错误");
-            return "index";
-        }else {
-            if (user.getJob_status()==2){
-                return "redirect:/main.jsp";
-            }else if (user.getJob_status()==3){
-                return "redirect:/manager.jsp";
-            }
-            return "";
+        if (user.getJob_status()==1){
+            return 1;
         }
+        if (user.getJob_status()==2){
+            return 2;
+        }
+        if (user.getJob_status()==3){
+            return 3;
+        }
+        return 0;
+
     }
 
     public TbUserService getUserService() {
