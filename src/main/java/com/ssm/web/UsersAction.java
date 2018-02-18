@@ -47,8 +47,12 @@ public class UsersAction {
             model.addAttribute("error","用户名或密码错误");
             return "index";
         }else {
-            
-            return "redirect:/main.jsp";
+            if (user.getJob_status()==2){
+                return "redirect:/main.jsp";
+            }else if (user.getJob_status()==3){
+                return "redirect:/manager.jsp";
+            }
+            return "";
         }
     }
 

@@ -23,14 +23,6 @@
     </style>
 </head>
 <body>
-<%--<div style="width:250px;margin: 150px auto">
-    <h2>用户登录</h2>
-    <form id="myform">
-        工号：<input name="job_num"><br>
-        密码：<input name="job_pwd" type="password"><br>
-        <input type="button" value="登录" onclick="check()">
-    </form>
-</div>--%>
 <form class="layui-form" id="myform">
     <div class="mydiv">
         <center><h2>用户登录</h2><br></center>
