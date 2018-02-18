@@ -41,12 +41,13 @@ public class UsersAction {
         users.put("job_num",job_num.trim());
         users.put("job_pwd", job_pwd.trim());
         TbUsers user=userService.doLogin(users);
-
         session.setAttribute("user",user);
+
         if (user==null){
             model.addAttribute("error","用户名或密码错误");
             return "index";
         }else {
+            
             return "redirect:/main.jsp";
         }
     }

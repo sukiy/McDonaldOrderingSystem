@@ -11,17 +11,46 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        .mydiv{
+            border: 1px solid #5FB878;
+            width: 350px;
+            margin: 180px auto;
+            border-radius: 5px;
+            box-shadow: gray 0px 0px 10px;
+        }
+    </style>
 </head>
 <body>
-<div style="width:250px;margin: 150px auto">
+<%--<div style="width:250px;margin: 150px auto">
     <h2>用户登录</h2>
     <form id="myform">
-              <input type="">
         工号：<input name="job_num"><br>
         密码：<input name="job_pwd" type="password"><br>
         <input type="button" value="登录" onclick="check()">
     </form>
-</div>
+</div>--%>
+<form class="layui-form" id="myform">
+    <div class="mydiv">
+        <center><h2>用户登录</h2><br></center>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">工号</label>
+                <div class="layui-input-inline">
+                    <input name="job_num" class="layui-input">
+                </div>
+            </div><br>
+            <div class="layui-inline">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-inline">
+                    <input name="job_pwd" type="password" class="layui-input"><br>
+                    <input type="button" value="登录" class="layui-btn" onclick="check()">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>
 <script type="text/javascript">
@@ -34,6 +63,7 @@
          async:true,
          success:function (res) {
              if (res && res=="index"){
+                 alert("用户名或密码错误");
                  window.location.href="${pageContext.request.contextPath}/index.jsp";
              }else {
                  window.location.href="${pageContext.request.contextPath}/main.jsp";
